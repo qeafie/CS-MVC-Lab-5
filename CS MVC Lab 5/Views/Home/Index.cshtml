@@ -1,0 +1,32 @@
+﻿@model CS_MVC_Lab_5.Models.OperationModel
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Home"))
+{
+
+    <h3>Simple calculator</h3>
+    <br />
+    <br />
+    @Html.EditorFor(x => x.X, new { @class="form-control"})
+    <br />
+    <br />
+    @Html.EditorFor(x => x.Y, new { @class="form-control"})
+    <br />
+    <br />
+    <input type="submit" value="add" name="command"  class="btn btn-dark"/>
+    <input type="submit" value="sub" name="command" class="btn btn-dark"/>
+    <input type="submit" value="mul" name="command" class="btn btn-dark"/>
+    <input type="submit" value="div" name="command" class="btn btn-dark"/>
+    <br />
+    <br />
+    <h2>
+        @Html.Label("Result is:")
+        @Html.DisplayFor(x => x.Result)
+    </h2>
+
+}
+
