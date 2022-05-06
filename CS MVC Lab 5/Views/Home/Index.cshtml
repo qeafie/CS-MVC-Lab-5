@@ -5,9 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 @using (Html.BeginForm("Index", "Home"))
 {
-
+    @Html.ValidationSummary();
     <h3>Simple calculator</h3>
     <br />
     <br />

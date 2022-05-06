@@ -21,26 +21,37 @@ namespace CS_MVC_Lab_5.Controllers
         [HttpPost]
        public ActionResult Index(OperationModel model, string command)
         {
-          
-            switch (command)
+            if (ModelState.IsValid)
             {
-                case "add":
-                    model.Result = model.X + model.Y;
-                    break;
+                switch (command)
+                {
+                    case "add":
+                        model.Result = model.X + model.Y;
+                        break;
 
-                case "sub":
-                    model.Result = model.X - model.Y;
-                    break;
+                    case "sub":
+                        model.Result = model.X - model.Y;
+                        break;
 
-                case "mul":
-                    model.Result = model.X * model.Y;
-                    break;
+                    case "mul":
+                        model.Result = model.X * model.Y;
+                        break;
 
-                case "div":
-                    model.Result = model.X / model.Y;
-                    break;
+                    case "div":
+                        if(model.Y == 0)
+                        {
+                            ModelState.AddModelError("divByZero", "We don't divide by zero");
+                            model.Result = double.NaN;
+                        }
+                        else
+                            model.Result = model.X / model.Y;
+                        break;
+                }
+
+                return View(model);
             }
-            return View(model);
+            else
+                return View();
         }
     }
 }
